@@ -9,18 +9,21 @@
 void print_bar( int num ){
 
     char str[WIDTH+1]; 
-//    for(int i=0; i< WIDTH; i++) str[i] = ' ';
-//   for(int i=0; i< num; i++)   str[i] = '#';
-    for(int i=0; i< num; i++)   printf("#");
-    for(int i=0; i< WIDTH - num; i++)   printf(" ");
+    int i;
 
-    printf( "\r", str  );
+    for (i = 0;   i < num;   i++) str[i] = '#';
+    for (i = num; i < WIDTH; i++) str[i] = ' ';
+    
+    str[WIDTH] = '\0';
+    printf( "\r%s", str  );
     fflush( stdout );
 } 
 
 void wait(void){
-    for( int  j = 0; j < 5000 ; j++ ){
-        for( int  k = 0; k < 10000 ; k++ ) {
+    int j, k;
+
+    for( j = 0; j < 5000 ; j++ ){
+        for( k = 0; k < 10000 ; k++ ) {
 
         }
     }
@@ -29,8 +32,9 @@ void wait(void){
 
 int main(){
 
+    int i;
     while(1){
-        for( int  i = 0; i<WIDTH*2; i++ ){
+        for( i = 0; i<WIDTH*2; i++ ){
             wait();
             print_bar( ABS( WIDTH-i) ) ;
         }
